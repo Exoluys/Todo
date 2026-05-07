@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import AppProvider from "@/providers/appProvider";
 import { Toaster } from "sonner";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import Sidebar from "@/components/Sidebar";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -29,8 +31,14 @@ export default function RootLayout({
         >
             <body className="min-h-full flex flex-col">
                 <AppProvider>
-                    {children}
-                    <Toaster position="top-right" />
+                    <SidebarProvider>
+                        <Sidebar />
+                        <main className="flex-1 min-h-screen">
+                            <SidebarTrigger />
+                            {children}
+                            <Toaster position="top-right" />
+                        </main>
+                    </SidebarProvider>
                 </AppProvider>
             </body>
         </html >

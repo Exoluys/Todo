@@ -47,6 +47,7 @@ const Page = () => {
                                         type="email"
                                         placeholder="you@example.com"
                                         {...form.register("email")}
+                                        className="rounded-md text-xs!"
                                     />
                                     <FieldError>{form.formState.errors.email?.message}</FieldError>
                                 </Field>
@@ -56,6 +57,7 @@ const Page = () => {
                                         type="password"
                                         placeholder="••••••••"
                                         {...form.register("password")}
+                                        className="rounded-md text-xs!"
                                     />
                                     <FieldError>{form.formState.errors.password?.message}</FieldError>
                                 </Field>

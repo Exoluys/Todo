@@ -2,7 +2,7 @@ import { Button } from "./ui/button"
 import { Checkbox } from "./ui/checkbox"
 import { Input } from "./ui/input"
 
-const TaskComponent = () => {
+const TodayComponent = () => {
     return (
         <>
             <div className="flex flex-col justify-center items-center mt-10 gap-5">
@@ -27,4 +27,4 @@ const TaskComponent = () => {
     )
 }
 
-export default TaskComponent
+export default TodayComponent

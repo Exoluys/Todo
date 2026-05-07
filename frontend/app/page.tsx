@@ -1,12 +1,8 @@
-import Navbar from "@/components/Navbar"
-import TaskComponent from "@/components/TaskComponent"
+import TodayComponent from "@/components/TodayComponent"
 
 const page = () => {
     return (
-        <div className="px-10 w-full">
-            <Navbar />
-            <TaskComponent />
-        </div>
+        <TodayComponent />
     )
 }
 

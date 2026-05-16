@@ -1,7 +1,7 @@
 "use client"
 
 import { Calendar, CircleCheck, Logs, Sun } from "lucide-react"
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar"
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar"
 import { usePathname } from "next/navigation"
 
 const AppSidebar = () => {
@@ -19,7 +19,7 @@ const AppSidebar = () => {
                         <SidebarMenu className="space-y-1">
                             <SidebarMenuItem>
                                 <SidebarMenuButton
-                                    className={pathname === "/" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
+                                    className={pathname === "/dashboard/today" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
                                 >
                                     <Sun className="h-5! w-5!" />
                                     Today
@@ -27,7 +27,7 @@ const AppSidebar = () => {
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton
-                                    className={pathname === "/upcoming" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
+                                    className={pathname === "/dashboard/upcoming" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
                                 >
                                     <Calendar className="h-5! w-5!" />
                                     Upcoming
@@ -35,7 +35,7 @@ const AppSidebar = () => {
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton
-                                    className={pathname === "/all" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
+                                    className={pathname === "/dashboard/all" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
                                 >
                                     <Logs className="h-5! w-5!" />
                                     All tasks
@@ -43,7 +43,7 @@ const AppSidebar = () => {
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton
-                                    className={pathname === "/completed" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
+                                    className={pathname === "/dashboard/completed" ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground" : ""}
                                 >
                                     <CircleCheck className="h-5! w-5!" />
                                     Completed

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 type AuthContextType = {
     user: User | null
+    loading: boolean
     register: (data: RegisterData) => Promise<void>
     login: (data: LoginData) => Promise<void>
     logout: () => void
@@ -18,6 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null)
+    const [loading, setLoading] = useState(true)
     const router = useRouter()
 
     const register = useCallback(async (data: RegisterData) => {
@@ -73,6 +75,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         <AuthContext.Provider
             value={{
                 user,
+                loading,
                 register,
                 login,
                 logout

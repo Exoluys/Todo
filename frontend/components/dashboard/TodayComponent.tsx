@@ -1,14 +1,24 @@
-import { Button } from "./ui/button"
-import { Checkbox } from "./ui/checkbox"
-import { Input } from "./ui/input"
+"use client"
+
+import { useAuth } from "@/context/AuthContext"
+import { Button } from "../ui/button"
+import { Checkbox } from "../ui/checkbox"
+import { Input } from "../ui/input"
 
 const TodayComponent = () => {
+    const { user } = useAuth()
+
     return (
         <>
             <div className="flex flex-col justify-center items-center mt-10 gap-5">
                 <div className="w-120 flex items-center gap-4">
-                    <Input type="text" placeholder="Add a new task..." className="rounded-md text-xs!" />
-                    <Button className="text-xs">Add Task</Button>
+                    <Input type="text" placeholder="Add a new task..." className="px-4 py-5.5 rounded-md text-xs!" />
+                    <Button
+                        className="text-xs"
+                        disabled={!user}
+                    >
+                        Add Task
+                    </Button>
                 </div>
             </div>
             <div className="space-y-5 mt-10">

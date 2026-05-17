@@ -4,9 +4,9 @@ from tasks.models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    is_complete = serializers.BooleanField(default=False)
+    priority = serializers.ReadOnlyField()
 
     class Meta:
         model = Task
-        fields = ['id', 'title', 'description', 'is_complete', 'created_at', 'updated_at']
+        fields = ['id', 'title', 'description', 'priority', 'due_date', 'is_complete', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at']

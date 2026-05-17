@@ -26,7 +26,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True)
 
     def validate(self, attrs):
-        user = authenticate(email=attrs['email'], password=attrs['password'])
+        user = authenticate(request=self.context.get('request'), email=attrs['email'], password=attrs['password'])
 
         if not user:
             raise serializers.ValidationError("User Not Found")

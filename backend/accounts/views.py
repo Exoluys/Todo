@@ -45,7 +45,7 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     @staticmethod
-    def post(self, request):
+    def post(request):
         request.auth.delete()
         return Response({
             "message": "Delete Successful!",

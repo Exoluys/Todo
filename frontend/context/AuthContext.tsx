@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             const res = await api.post("auth/register", data)
             setUser(res.data.user)
             toast.success("Account created successfully!")
-            router.push("/")
+            router.push("/dashboard/today")
         }
         catch (error) {
             if (axios.isAxiosError(error)) {

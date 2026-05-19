@@ -29,13 +29,15 @@ export const useLogin = () => {
 
     return useMutation({
         mutationFn: (data: LoginData) => api.post("auth/login", data),
-        onSuccess: () => {
+        onSuccess: (res) => {
+            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("user", JSON.stringify(res.data.user))
             toast.success("Login successful!")
-            router.push("/dashboard")
+            router.push("/dashboard/today")
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {
-                toast.error(error.response?.data?.message || "Login failed")
+                toast.error(error.response?.data?.message || error.response?.data?.non_field_errors?.[0] || error.response?.data?.detail || "Login failed")
             } else {
                 toast.error("Something went wrong")
             }

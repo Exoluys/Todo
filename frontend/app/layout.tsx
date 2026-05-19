@@ -3,6 +3,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import AppProvider from "@/providers/appProvider";
 import { poppins } from "@/lib/fonts";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
     title: "Todo App",
@@ -23,6 +24,7 @@ export default function RootLayout({
             <body className="min-h-full flex flex-col">
                 <AppProvider>
                     {children}
+                    <Toaster position="top-right" />
                 </AppProvider>
             </body>
         </html >

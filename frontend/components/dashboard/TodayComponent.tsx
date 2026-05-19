@@ -1,22 +1,36 @@
 "use client"
 
-import { useAuth } from "@/context/AuthContext"
+import { useState } from "react"
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
+import { useCreateTask } from "@/hooks/useTaskMutations"
 
 const TodayComponent = () => {
-    const { user } = useAuth()
+    const [taskTitle, setTaskTitle] = useState("")
+    const { mutate: createTask } = useCreateTask()
+
+    const addTask = () => {
+        createTask({
+            title: taskTitle,
+            description: "This is a description of the task.",
+            dueDate: new Date().toISOString(),
+            completed: false
+        })
+    }
 
     return (
         <>
             <div className="flex flex-col justify-center items-center mt-10 gap-5">
                 <div className="w-120 flex items-center gap-4">
-                    <Input type="text" placeholder="Add a new task..." className="px-4 py-5.5 rounded-md text-xs!" />
-                    <Button
-                        className="text-xs"
-                        disabled={!user}
-                    >
+                    <Input
+                        type="text"
+                        placeholder="Add a new task..."
+                        className="px-4 py-5.5 rounded-md text-xs!"
+                        value={taskTitle}
+                        onChange={(e) => setTaskTitle(e.target.value)}
+                    />
+                    <Button onClick={addTask} className="text-xs" type="submit">
                         Add Task
                     </Button>
                 </div>

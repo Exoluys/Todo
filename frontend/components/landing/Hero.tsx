@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils"
 import Navbar from "../Navbar"
-import { fraunces } from "@/app/layout"
 import { Button } from "../ui/button"
 import Link from "next/link"
+import { fraunces } from "@/lib/fonts"
 
 const Hero = () => {
     return (

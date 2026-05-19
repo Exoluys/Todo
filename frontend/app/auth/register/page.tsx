@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardFooter, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Field, FieldSet, FieldLabel, FieldError } from "@/components/ui/field"
@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button"
 import { RegisterSchema, RegisterSchemaType } from "@/lib/schema/register.schema"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { useAuth } from "@/context/AuthContext"
+import { useRegister } from "@/hooks/useAuthMutations"
+import { cn } from "@/lib/utils"
+import { fraunces } from "@/lib/fonts"
 
 const Page = () => {
-    const { register } = useAuth()
+    const { mutate: register, isPending } = useRegister()
 
     const form = useForm<RegisterSchemaType>({
         resolver: zodResolver(RegisterSchema),
@@ -36,8 +38,10 @@ const Page = () => {
             </Button>
             <div className="w-full h-screen flex flex-col items-center justify-center">
                 <Card className="w-120 flex items-center shadow-2xl gap-2">
-                    <CardTitle className="text-[26px] font-bold mt-2">REGISTER</CardTitle>
-                    <CardDescription>Welcome! Please register to continue</CardDescription>
+                    <p className="text-[#1D9E75] text-xs tracking-widest uppercase text-center">REGISTER</p>
+                    <CardTitle className={cn("text-3xl font-semibold text-center pb-2", fraunces.className)}>
+                        Create an account
+                    </CardTitle>
                     <CardContent className="w-100 h-full flex items-center justify-center">
                         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
                             <FieldSet className="flex flex-col gap-4">
@@ -47,7 +51,7 @@ const Page = () => {
                                         type="email"
                                         placeholder="you@example.com"
                                         {...form.register("email")}
-                                        className="text-xs!"
+                                        className="rounded-md text-xs!"
                                     />
                                     <FieldError>{form.formState.errors.email?.message}</FieldError>
                                 </Field>
@@ -57,7 +61,7 @@ const Page = () => {
                                         type="text"
                                         placeholder="username"
                                         {...form.register("username")}
-                                        className="text-xs!"
+                                        className="rounded-md text-xs!"
                                     />
                                     <FieldError>{form.formState.errors.username?.message}</FieldError>
                                 </Field>
@@ -67,15 +71,17 @@ const Page = () => {
                                         type="password"
                                         placeholder="••••••••"
                                         {...form.register("password")}
-                                        className="text-xs!"
+                                        className="rounded-md text-xs!"
                                     />
                                     <FieldError>{form.formState.errors.password?.message}</FieldError>
                                 </Field>
                             </FieldSet>
                             <div className="w-full flex flex-col items-center justify-center gap-2 mt-2">
-                                <Button type="submit" className="w-40 h-10">Register</Button>
+                                <Button type="submit" className="w-40 h-10" disabled={isPending}>
+                                    {isPending ? "Registering..." : "Register"}
+                                </Button>
                                 <CardFooter className="text-sm text-muted-foreground gap-1">
-                                    Already have an account? <Link href="login" className="text-blue-500 hover:underline">Login</Link>
+                                    Already have an account? <Link href="login" className="text-[#1D9E75] hover:underline">Login</Link>
                                 </CardFooter>
                             </div>
                         </form>

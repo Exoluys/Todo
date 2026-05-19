@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 
 const AppSidebar = () => {
     const pathname = usePathname()
+    console.log(pathname)
 
     return (
         <Sidebar>

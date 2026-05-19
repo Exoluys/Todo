@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardFooter, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card"
 import { loginSchema, LoginSchemaType } from "@/lib/schema/login.schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,10 +9,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { useAuth } from "@/context/AuthContext"
+import { cn } from "@/lib/utils"
+import { fraunces } from "@/lib/fonts"
+import { useLogin } from "@/hooks/useAuthMutations"
 
 const Page = () => {
-    const { login } = useAuth()
+    const { mutate: login, isPending } = useLogin()
 
     const form = useForm<LoginSchemaType>({
         resolver: zodResolver(loginSchema),
@@ -35,9 +37,11 @@ const Page = () => {
                 </Link>
             </Button>
             <div className="w-full h-screen flex flex-col items-center justify-center">
-                <Card className="w-115 flex items-center shadow-2xl gap-2">
-                    <CardTitle className="text-[26px] font-bold mt-2">LOGIN</CardTitle>
-                    <CardDescription>Welcome back! Please login to continue</CardDescription>
+                <Card className="w-115 flex flex-col items-center shadow-sm gap-2 pt-8">
+                    <p className="text-[#1D9E75] text-xs tracking-widest uppercase text-center">Login</p>
+                    <CardTitle className={cn("text-3xl font-semibold text-center pb-2", fraunces.className)}>
+                        Welcome back
+                    </CardTitle>
                     <CardContent className="w-100 h-full flex items-center justify-center">
                         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
                             <FieldSet className="flex flex-col gap-4">
@@ -63,9 +67,11 @@ const Page = () => {
                                 </Field>
                             </FieldSet>
                             <div className="w-full flex flex-col items-center justify-center gap-2 mt-2">
-                                <Button type="submit" className="w-40 h-10">Login</Button>
+                                <Button type="submit" className="w-40 h-10" disabled={isPending}>
+                                    {isPending ? "Logging in..." : "Login"}
+                                </Button>
                                 <CardFooter className="text-sm text-muted-foreground gap-1">
-                                    Don&#39;t have an account? <Link href="register" className="text-blue-500 hover:underline">Register</Link>
+                                    Don&#39;t have an account? <Link href="register" className="text-[#1D9E75] hover:underline">Register</Link>
                                 </CardFooter>
                             </div>
                         </form>

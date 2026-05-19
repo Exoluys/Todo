@@ -1,10 +1,11 @@
-import { Sidebar, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import AppSidebar from "@/components/dashboard/Sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "sonner"
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <SidebarProvider>
-            <Sidebar />
+            <AppSidebar />
             <main className="flex-1 min-h-screen">
                 <SidebarTrigger />
                 <div className="px-10 w-full">

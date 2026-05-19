@@ -1,7 +1,7 @@
-import { fraunces } from "@/app/layout"
 import { cn } from "@/lib/utils"
 import { Calendar, CircleCheck, Logs } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { fraunces } from "@/lib/fonts"
 
 const features = [
     {

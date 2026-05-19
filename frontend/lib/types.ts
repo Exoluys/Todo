@@ -15,3 +15,12 @@ export type RegisterData = {
     username: string
     password: string
 }
+
+export type Tasks = {
+    id?: number
+    title: string
+    description: string
+    priority?: "Low" | "Medium" | "High"
+    dueDate: string
+    completed: boolean
+}

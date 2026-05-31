@@ -19,7 +19,7 @@ export type RegisterData = {
 export type Tasks = {
     id?: number
     title: string
-    priority?: "Low" | "Medium" | "High"
+    priority?: "Low" | "Med" | "High"
     due_date: string
-    completed: boolean
+    is_complete: boolean
 }

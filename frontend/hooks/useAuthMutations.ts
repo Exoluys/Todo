@@ -33,7 +33,7 @@ export const useLogin = () => {
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("user", JSON.stringify(res.data.user))
             toast.success("Login successful!")
-            router.push("/dashboard/today")
+            router.push("/dashboard/myTask")
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {

@@ -19,8 +19,7 @@ export type RegisterData = {
 export type Tasks = {
     id?: number
     title: string
-    description: string
     priority?: "Low" | "Medium" | "High"
-    dueDate: string
+    due_date: string
     completed: boolean
 }

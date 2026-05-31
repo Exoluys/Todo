@@ -37,7 +37,7 @@ const Page = () => {
                 </Link>
             </Button>
             <div className="w-full h-screen flex flex-col items-center justify-center">
-                <Card className="w-115 flex flex-col items-center shadow-sm gap-2 pt-8">
+                <Card className="w-115 flex flex-col items-center gap-2 pt-8 shadow-2xl">
                     <p className="text-[#1D9E75] text-xs tracking-widest uppercase text-center">Login</p>
                     <CardTitle className={cn("text-3xl font-semibold text-center pb-2", fraunces.className)}>
                         Welcome back

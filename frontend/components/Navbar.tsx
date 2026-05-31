@@ -22,6 +22,7 @@ const Navbar = () => {
                                 Login
                             </Link>
                         </Button>
+
                         <Button asChild>
                             <Link href="/auth/register" className="text-xs">
                                 Register

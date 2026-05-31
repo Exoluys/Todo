@@ -26,7 +26,15 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["todo-ten-zeta-77.vercel.app"]
+ALLOWED_HOSTS = [
+    "todo-aI4o.onrender.com",
+    "todo-ten-zeta-77.vercel.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://todo-aI4o.onrender.com",
+    "https://todo-ten-zeta-77.vercel.app",
+]
 
 # Application definition
 
@@ -130,6 +138,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://todo-ten-zeta-77.vercel.app/"
 ]
 
 CORS_ALLOW_CREDENTIALS = True

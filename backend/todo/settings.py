@@ -138,7 +138,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://todo-ten-zeta-77.vercel.app/"
+    "https://todo-ten-zeta-77.vercel.app"
 ]
 
 CORS_ALLOW_CREDENTIALS = True

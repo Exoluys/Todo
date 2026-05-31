@@ -27,12 +27,12 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-    "todo-aI4o.onrender.com",
+    "todo-a14o.onrender.com",
     "todo-ten-zeta-77.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://todo-aI4o.onrender.com",
+    "https://todo-a14o.onrender.com",
     "https://todo-ten-zeta-77.vercel.app",
 ]
 

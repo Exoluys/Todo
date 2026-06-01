@@ -12,7 +12,7 @@ export const useRegister = () => {
         mutationFn: (data: RegisterData) => api.post("auth/register", data),
         onSuccess: () => {
             toast.success("Account created successfully!")
-            router.push("/login")
+            router.push("/auth/login")
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {

@@ -5,14 +5,16 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGrou
 import { usePathname, useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu"
+import { Spinner } from "../ui/spinner"
+import { useLogout } from "@/hooks/useAuthMutations"
 
 const AppSidebar = () => {
     const pathname = usePathname()
     const router = useRouter()
-
+    const { mutate: logout } = useLogout()
     const { user, loading } = useAuth()
 
-    if (loading) return null
+    if (loading) return <Spinner />
 
     return (
         <Sidebar>
@@ -71,7 +73,12 @@ const AppSidebar = () => {
                                         </SidebarMenuButton>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="rounded-xl">
-                                        <DropdownMenuItem className="hover:rounded-xl pl-5">
+                                        <DropdownMenuItem
+                                            className="hover:rounded-xl pl-5"
+                                            onClick={() => (
+                                                logout()
+                                            )}
+                                        >
                                             <LogOut />
                                             Logout
                                         </DropdownMenuItem>

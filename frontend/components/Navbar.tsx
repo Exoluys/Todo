@@ -13,7 +13,7 @@ const Navbar = () => {
     const { mutate: logout } = useLogout()
     const router = useRouter()
 
-    if (loading) <Spinner />
+    if (loading) return <Spinner />
 
     return (
         <div className="flex items-center justify-between h-10">
@@ -38,7 +38,7 @@ const Navbar = () => {
                     <>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button size="icon" className="rounded-4xl">
+                                <Button size="icon">
                                     {user.username[0].toUpperCase()}
                                 </Button>
                             </DropdownMenuTrigger>

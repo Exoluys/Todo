@@ -128,26 +128,25 @@ const TodayComponent = () => {
                             <p className="text-sm text-muted-foreground">Failed to fetch tasks.</p>
                         </div>
                     ) : (
-                        tasks && tasks.length === 0 ? (
-                            <div className="flex flex-col justify-center items-center py-10 gap-2">
-                                <p className="text-sm text-muted-foreground">No tasks for today. Enjoy your day!</p>
-                            </div>
-                        ) : (
-                            <>
-                                {overdueTasks && overdueTasks.length > 0 && (
-                                    <>
-                                        <h3 className="text-sm font-semibold text-red-500">Overdue</h3>
-                                        {overdueTasks.map((task) => taskItem(task, <Badge variant="destructive" className="text-xs">Overdue</Badge>))}
-                                    </>
-                                )}
-                                {highTasks && highTasks.length > 0 && (
-                                    <>
-                                        <h3 className="text-sm font-semibold text-orange-500">Today</h3>
-                                        {highTasks.map((task) => taskItem(task, <Badge className="bg-yellow-50 text-orange-500 dark:bg-yellow-950 dark:text-yellow-300 text-xs">High</Badge>))}
-                                    </>
-                                )}
-                            </>
-                        )
+                        <>
+                            {overdueTasks && overdueTasks.length > 0 && (
+                                <>
+                                    <h3 className="text-sm font-semibold text-red-500">Overdue</h3>
+                                    {overdueTasks.map((task) => taskItem(task, <Badge variant="destructive" className="text-xs">Overdue</Badge>))}
+                                </>
+                            )}
+                            {highTasks && highTasks.length > 0 && (
+                                <>
+                                    <h3 className="text-sm font-semibold text-orange-500">Today</h3>
+                                    {highTasks.map((task) => taskItem(task, <Badge className="bg-yellow-50 text-orange-500 dark:bg-yellow-950 dark:text-yellow-300 text-xs">High</Badge>))}
+                                </>
+                            )}
+                            {overdueTasks?.length === 0 && highTasks?.length === 0 && (
+                                <div className="flex flex-col justify-center items-center py-10 gap-2">
+                                    <p className="text-sm text-muted-foreground">No tasks for today. Enjoy your day!</p>
+                                </div>
+                            )}
+                        </>
                     )}
                 </ul>
             </div>

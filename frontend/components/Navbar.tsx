@@ -4,9 +4,14 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import { useAuth } from "@/context/AuthContext"
 import { Spinner } from "./ui/spinner"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { useLogout } from "@/hooks/useAuthMutations"
+import { useRouter } from "next/navigation"
 
 const Navbar = () => {
     const { user, loading } = useAuth()
+    const { mutate: logout } = useLogout()
+    const router = useRouter()
 
     if (loading) <Spinner />
 
@@ -31,9 +36,31 @@ const Navbar = () => {
                     </>
                 ) : (
                     <>
-                        <Button size="icon" className="rounded-4xl">
-                            {user.username[0].toUpperCase()}
-                        </Button>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button size="icon" className="rounded-4xl">
+                                    {user.username[0].toUpperCase()}
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="rounded-xl" align="end">
+                                <DropdownMenuItem
+                                    className="hover:rounded-xl pl-5"
+                                    onSelect={() => {
+                                        router.push("/dashboard/myTask")
+                                    }}
+                                >
+                                    Dashboard
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="hover:rounded-xl pl-5"
+                                    onSelect={() => {
+                                        logout()
+                                    }}
+                                >
+                                    Logout
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </>
                 )}
 

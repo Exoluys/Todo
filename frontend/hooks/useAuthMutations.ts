@@ -1,6 +1,6 @@
 import { api } from "@/lib/api"
 import { LoginData, RegisterData } from "@/lib/types"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
@@ -25,6 +25,7 @@ export const useRegister = () => {
 }
 
 export const useLogin = () => {
+    const queryClient = useQueryClient()
     const router = useRouter()
 
     return useMutation({
@@ -32,6 +33,7 @@ export const useLogin = () => {
         onSuccess: (res) => {
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("user", JSON.stringify(res.data.user))
+            queryClient.clear()
             toast.success("Login successful!")
             router.push("/dashboard/myTask")
         },
@@ -46,11 +48,19 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
+    const queryClient = useQueryClient()
+    const router = useRouter()
+
     return useMutation({
         mutationFn: () => api.post("auth/logout"),
+        onSuccess: () => {
+            toast.success("Logout successful!")
+        },
         onSettled: () => {
+            queryClient.clear()
             localStorage.removeItem("token")
             localStorage.removeItem("user")
+            router.push("/auth/login")
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {

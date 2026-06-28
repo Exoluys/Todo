@@ -23,13 +23,13 @@ const Navbar = () => {
                 {!user ? (
                     <>
                         <Button variant="outline" asChild>
-                            <Link href="/auth/login" className="text-xs">
+                            <Link href="/auth/login" className="text-xs py-5 px-4">
                                 Login
                             </Link>
                         </Button>
 
                         <Button asChild>
-                            <Link href="/auth/register" className="text-xs">
+                            <Link href="/auth/register" className="text-xs py-5 px-4">
                                 Register
                             </Link>
                         </Button>

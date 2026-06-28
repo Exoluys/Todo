@@ -81,7 +81,7 @@ const TodayComponent = () => {
         <>
             <div className="flex flex-col justify-center items-center mt-10 gap-5">
                 <div className="w-120 flex items-center gap-4">
-                    <InputGroup className="px-4 py-5.5 rounded-md">
+                    <InputGroup className="px-4 py-5 rounded-md">
                         <InputGroupInput
                             type="text"
                             placeholder="Add a new task..."
@@ -110,7 +110,7 @@ const TodayComponent = () => {
                         </InputGroupAddon>
                     </InputGroup>
 
-                    <Button onClick={addTask} className="text-xs" type="submit">
+                    <Button onClick={addTask} className="text-xs py-5 px-4 rounded-md" type="submit">
                         Add Task
                     </Button>
                 </div>

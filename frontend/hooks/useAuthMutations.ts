@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext"
 import { api } from "@/lib/api"
 import { LoginData, RegisterData } from "@/lib/types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -27,12 +28,14 @@ export const useRegister = () => {
 export const useLogin = () => {
     const queryClient = useQueryClient()
     const router = useRouter()
+    const { setUser } = useAuth()
 
     return useMutation({
         mutationFn: (data: LoginData) => api.post("auth/login", data),
         onSuccess: (res) => {
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("user", JSON.stringify(res.data.user))
+            setUser(res.data.user)
             queryClient.clear()
             toast.success("Login successful!")
             router.push("/dashboard/myTask")
@@ -50,6 +53,7 @@ export const useLogin = () => {
 export const useLogout = () => {
     const queryClient = useQueryClient()
     const router = useRouter()
+    const { setUser } = useAuth()
 
     return useMutation({
         mutationFn: () => api.post("auth/logout"),
@@ -60,6 +64,7 @@ export const useLogout = () => {
             queryClient.clear()
             localStorage.removeItem("token")
             localStorage.removeItem("user")
+            setUser(null)
             router.push("/auth/login")
         },
         onError: (error) => {

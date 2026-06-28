@@ -21,7 +21,7 @@ const Hero = () => {
                 </p>
 
                 <Button asChild>
-                    <Link href="/signup">Get Started</Link>
+                    <Link href="/auth/register" className="py-5 px-4">Get Started</Link>
                 </Button>
             </div>
         </div>
